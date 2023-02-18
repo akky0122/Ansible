@@ -4,3 +4,4 @@
   tasks:
     - name: start nginx
       shell: amazon-linux-extras install nginx1
+      #kjkjbjkmc kacjkb
