@@ -1,0 +1,13 @@
+---
+ - name: start nginx
+   shell: "{{ pack }}"        #amazon-linux-extras install nginx1
+ - name: copy to server jinja template
+   template: 
+      src: tems.j2
+      dest: /var/opt
+ - name: copy filer
+   ansible.builtin.copy:
+    src: /home/ec2-user/devops/ankit/Centralgit/abc/files/dt.xml
+    dest: /var/opt/file.txt
+   become: true
+   become_user: root
