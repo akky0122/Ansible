@@ -1,5 +1,5 @@
 ---
- - name: start nginx
+ - name: install docker
    shell: "{{ pack }}"        #amazon-linux-extras install nginx1
  - name: copy to server jinja template
    template: 
@@ -11,3 +11,5 @@
     dest: /var/opt/file.txt
    become: true
    become_user: root
+ - name: install nginx
+   shell: "{{ pack1 }}"
