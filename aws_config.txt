@@ -1,0 +1,24 @@
+To configure aws on aws linux machine
+
+1: aws configure
+2: put access key
+3: put Secret access key
+4: put region
+
+
+How to get keys
+1: Open the IAM console at https://console.aws.amazon.com/iam/.
+
+2: On the navigation menu, choose Users.
+
+3: Choose your IAM user name (not the check box).
+
+4: Open the Security credentials tab, and then choose Create access key.
+
+5: To see the new access key, choose Show. Your credentials resemble the following:
+
+6: Access key ID: AKIAIOSFODNN7EXAMPLE
+
+7: Secret access key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+To download the key pair, choose Download .csv file. Store the .csv file with keys in a secure location.
