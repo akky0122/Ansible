@@ -1,15 +1,17 @@
 ---
  - name: install docker
-   shell: "{{ pack }}"        #amazon-linux-extras install nginx1
+   shell: "{{ docker }}"        #amazon-linux-extras install nginx1
  - name: copy to server jinja template
    template: 
       src: tems.j2
       dest: /var/opt
  - name: copy filer
    ansible.builtin.copy:
-    src: /home/ec2-user/devops/ankit/Centralgit/abc/files/dt.xml
-    dest: /var/opt/file.txt
+    src: /home/ec2-user/Ansible/Mumbai.pem
+    dest: /home/ec2-user
    become: true
    become_user: root
  - name: install nginx
-   shell: "{{ pack1 }}"
+   shell: "{{ nginx }}"
+ - name: install git
+   shell: "{{ git }}"

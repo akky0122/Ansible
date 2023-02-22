@@ -1,4 +1,5 @@
 ---
-pack1: yum install nginx -y 
-pack : yum install docker -y
+nginx: sudo amazon-linux-extras install nginx1 -y
+docker : yum install docker -y
+git : yum install git -y
 
