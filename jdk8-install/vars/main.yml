@@ -1,0 +1,9 @@
+---
+jdk_version: 8u302
+jdk_build: b08
+jdk_checksum: sha256:4f4db1d1b969ed01e7c03ac9e0db5590340d86856d03df00e62ebe0527dbf870
+jdk_download_url: "https://download.oracle.com/otn-pub/java/jdk/8u301-b09/d3c52aa6bfa54d3ca74e617f18309292/jdk-8u301-linux-x64.tar.gz"
+jdk_install_dir: /opt/jdk{{ jdk_version }}
+
+
+# vars file for jdk8-install

@@ -1,0 +1,25 @@
+---
+- name: Install JDK 8 on Amazon Linux
+  hosts: webservers
+  become: true
+
+  tasks:
+  - name: Install dependencies
+    yum:
+      name:
+        - java-1.8.0-openjdk
+        - java-1.8.0-openjdk-devel
+      state: present
+
+  - name: Set JAVA_HOME environment variable
+    lineinfile:
+      dest: /etc/environment
+      regexp: '^JAVA_HOME='
+      line: 'JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk'
+      state: present
+    register: java_home
+
+  - name: Load JAVA_HOME environment variable
+    shell: source /etc/environment
+    when: java_home.changed
+

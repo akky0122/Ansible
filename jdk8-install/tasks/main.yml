@@ -1,0 +1,54 @@
+
+ - name: Install JDK 8
+   hosts: all
+   become: yes
+   vars:
+    jdk_tar: "openjdk-8u302-b08-linux-x64.tar.gz"
+    jdk_folder: "jdk1.8.0_302"
+    jdk_path: "/opt/{{ jdk_folder }}"
+    java_home: "{{ jdk_path }}"
+    path: "{{ java_home }}/bin:{{ path }}"
+   tasks:
+    - name: Install wget
+      yum:
+        name: wget
+        state: present
+
+    - name: Download JDK 8
+      get_url:
+        url: "https://download.oracle.com/otn/java/jdk/8u301-b09/d3c52aa6bfa54d3ca74e617f18309292/{{ jdk_tar }}"
+        dest: "/tmp/{{ jdk_tar }}"
+        headers:
+          Cookie: oraclelicense=accept-securebackup-cookie
+
+    - name: Extract JDK 8
+      unarchive:
+        src: "/tmp/{{ jdk_tar }}"
+        dest: "/opt"
+        remote_src: yes
+        copy: no
+        creates: "{{ jdk_path }}"
+
+    - name: Set Java Home
+      become: yes
+      lineinfile:
+        path: /etc/environment
+        regexp: '.*JAVA_HOME.*'
+        line: "JAVA_HOME={{ java_home }}"
+        state: present
+
+    - name: Set Path
+      become: yes
+      lineinfile:
+        path: /etc/environment
+        regexp: '.*PATH.*'
+        line: "PATH=\"{{ path }}\""
+        state: present
+   handlers:
+    - name: Reload Environment
+      become: yes
+      shell: "source /etc/environment"
+
+
+
+# tasks file for jdk8-install

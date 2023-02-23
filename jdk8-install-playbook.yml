@@ -1,0 +1,7 @@
+---
+- name: Install JDK8
+  hosts: webservers
+  become: yes
+  roles:
+    - jdk8-install
+
