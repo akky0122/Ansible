@@ -1,0 +1,11 @@
+- name: Create Docker container
+  docker_container:
+    name: "{{ tomcat_container_name }}"
+    image: "{{ tomcat_image_name }}:latest"
+    ports:
+      - "{{ tomcat_port }}:8080"
+    volumes:
+      - /opt/tomcat/logs:/usr/local/tomcat/logs
+    restart_policy: always
+
+# tasks file for deploy-container

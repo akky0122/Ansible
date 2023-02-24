@@ -1,0 +1,10 @@
+- name: Create Dockerfile from template
+  template:
+    src: Dockerfile.j2
+    dest: /home/ec2-user/Ansible/Roles/docker_image/templates/Dockerfile
+
+- name: Build Docker image
+  docker_image:
+    name: tomcat
+    tag: latest
+    path: /home/ec2-user/Ansible/Roles/docker_image/templates
