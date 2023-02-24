@@ -1,0 +1,19 @@
+# Handlers: Handlers are tasks that are triggered when a specific event occurs in a playbook. Handlers are used to perform tasks such as restarting services or reloading configurations. Handlers are only executed if the task that triggers them has made changes. For example, the following playbook uses a handler to restart the httpd service when changes are made to the httpd.conf file:
+#
+
+
+- name: Configure httpd
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Configure httpd.conf
+      template:
+        src: httpd.conf.j2
+        dest: /etc/httpd/conf/httpd.conf
+      notify: Restart httpd service
+  handlers:
+    - name: Restart httpd service
+      service:
+        name: httpd
+        state: restarted
+

@@ -1,0 +1,22 @@
+#file: The file module is used to manage files and directories on Amazon Linux instances. For example, the following playbook creates a directory /var/www/html and copies a file index.html to that directory:
+
+---
+ - name: Create document root directory
+   hosts: localhost
+   become: yes
+   tasks:
+    - name: Create directory
+      file:
+        path: /var/www/html
+        state: directory
+        owner: apache
+        group: apache
+        mode: '0755'
+    - name: Copy index.html
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: '0644'
+

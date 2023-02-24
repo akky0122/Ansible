@@ -1,0 +1,11 @@
+#set_fact: The set_fact module is used to set a variable to a specific value in an Ansible playbook. This variable can then be used in subsequent tasks. For example, the following playbook sets a variable webserver_port to the value 80
+
+
+- name: Set web server port
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Set web server port
+      set_fact:
+        webserver_port: 80
+

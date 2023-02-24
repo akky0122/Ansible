@@ -1,0 +1,25 @@
+#Notifier: Notifiers are used in conjunction with handlers to send notifications when a handler is triggered. Notifiers can be used to send email alerts or update monitoring systems. For example, the following playbook uses a notifier to send an email when the httpd service is restarted:
+#
+
+- name: Configure httpd
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Configure httpd.conf
+      template:
+        src: httpd.conf.j2
+        dest: /etc/httpd/conf/httpd.conf
+      notify: Restart httpd service
+  handlers:
+    - name: Restart httpd service
+      service:
+        name: httpd
+        state: restarted
+      notify: Send email notification
+  handlers:
+    - name: Send email notification
+      mail:
+        to: admin@example.com
+        subject: HTTPD service restarted
+        body: The HTTPD service has been restarted on {{ ansible_hostname }}.
+

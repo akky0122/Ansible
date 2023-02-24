@@ -1,0 +1,14 @@
+#delegate_to: The delegate_to parameter is used in Ansible playbooks to specify a different host or group of hosts that should perform a task. This is useful when running tasks that require access to resources on a specific host or when delegating tasks to a specific set of hosts for performance or security reasons. For example, the following playbook runs the httpd service task on a different host than the default host:
+#
+
+- name: Start httpd service on app servers
+  hosts: app_servers
+  become: yes
+  tasks:
+    - name: Start httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      delegate_to: localhost
+

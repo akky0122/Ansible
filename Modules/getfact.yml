@@ -1,0 +1,21 @@
+#get_fact is not a specific concept in Ansible. However, the setup module in Ansible can be used to gather facts about remote hosts. These facts can include information about the operating system, the available network interfaces, the CPU and memory resources, and more. The gathered facts can then be used in subsequent tasks in the playbook.
+
+#The setup module is run automatically by Ansible when a playbook is executed, and the gathered facts are stored in the hostvars dictionary for each host. You can also manually run the setup module by using the gather_facts parameter in a playbook:
+#
+
+- name: Gather facts
+  hosts: localhost
+  gather_facts: yes
+  tasks:
+    - name: Print hostname
+      debug:
+        var: ansible_hostname
+
+
+- name: Print eth0 IP address
+  hosts: localhost
+  tasks:
+    - name: Print eth0 IP address
+      debug:
+        var: hostvars['localhost']['ansible_eth0']['ipv4']['address']
+

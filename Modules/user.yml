@@ -1,0 +1,14 @@
+#user: The user module is used to manage users and groups on Amazon Linux instances. For example, the following playbook creates a user jdoe with a home directory /home/jdoe:
+#
+---
+ - name: Create user
+   hosts: localhost
+   become: yes
+   tasks:
+    - name: Create user jdoe
+      user:
+        name: jdoe
+        create_home: yes
+        home: /home/jdoe
+        password: "{{ 'password' | password_hash('sha512') }}"
+

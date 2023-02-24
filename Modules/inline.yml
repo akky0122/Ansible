@@ -1,0 +1,12 @@
+#Inline function/calling function: Inline functions or calling functions are used in Ansible playbooks to perform simple operations such as concatenating strings or performing calculations. For example, the following playbook uses an inline function to create a file path:
+#
+
+- name: Create directory
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Create directory
+      file:
+        path: "{{ base_directory }}/subdirectory"
+        state: directory
+

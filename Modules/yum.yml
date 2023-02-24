@@ -1,0 +1,12 @@
+#yum: The yum module is used to manage packages on Amazon Linux instances. For example, the following playbook installs the httpd package on an EC2 instance:
+#
+---
+ - name: Install Apache HTTP server
+   hosts: localhost
+   become: yes
+   tasks:
+    - name: Install httpd package
+      yum:
+        name: httpd
+        state: present
+

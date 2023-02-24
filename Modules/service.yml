@@ -1,0 +1,15 @@
+#service: The service module is used to manage system services on Amazon Linux instances. For example, the following playbook starts the httpd service:
+#
+
+- name: Start httpd service
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Start httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+
+
